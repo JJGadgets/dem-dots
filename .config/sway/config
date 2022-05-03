@@ -54,7 +54,7 @@ set $term nixGL wezterm
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
-set $menu LC_ALL=C rofi -show drun | xargs swaymsg exec --
+set $menu LC_ALL=C rofi -show combi -modi combi -combi-modi "window,drun,run,ssh" -font "Bauhaus 12" -show-icons -icon-theme Pop -terminal "nixGL wezterm" | xargs swaymsg exec --
 # explore fuzzel?
 #set $menu fuzzel
 

@@ -1,0 +1,110 @@
+theme = "dracula"
+icons = "awesome"
+# when using Nerd Font non-mono for bigger icons, add extra space between icon and first word in format strings
+icons_format = " <span font_family='Iosevka Nerd Font'>{icon}</span> "
+
+## below can be off screen
+[[block]]
+block = "networkmanager"
+on_click = "gnome-control-center wifi"
+interface_name_include = ["wl\\w+"]
+ap_format = "{ssid} {strength} {freq}"
+device_format = "{icon} {ap}"
+
+[[block]]
+block = "net"
+interval = 5
+format = " {ip} {graph_up}{speed_up;M} {graph_down}{speed_down;M}"
+
+## below must fit into screen
+
+[[block]]
+block = "cpu"
+interval = 5
+info = 0
+warning = 25
+critical = 80
+format = "{boost} {barchart} {utilization} {frequency}"
+
+[[block]]
+block = "temperature"
+collapsed = false
+interval = 5
+scale = "celsius"
+chip = "*-acpi-*"
+format = "{max}C"
+good = 20
+idle = 50
+info = 70
+warning = 80
+
+[[block]]
+block = "memory"
+display_type = "memory"
+icons = true
+interval = 5
+format_mem = "{mem_avail}"
+format_swap = "Swap {swap_used}"
+
+[[block]]
+block = "disk_space"
+path = "/"
+info_type = "available"
+unit = "GB"
+interval = 300
+warning = 10.0
+alert = 5.0
+alert_absolute = true
+format = "{icon} / {available}"
+
+[[block]]
+block = "disk_space"
+path = "/home"
+info_type = "available"
+unit = "GB"
+interval = 300
+warning = 100.0
+alert = 10.0
+alert_absolute = true
+format = "{icon}  ZFS {available}"
+
+[[block]]
+block = "networkmanager"
+on_click = "if [[ $(nmcli radio wifi) == 'disabled' ]]; then rfkill unblock wifi && nmcli radio wifi on; else nmcli radio wifi off; fi"
+interface_name_include = ["wl\\w+", "en\\w+", "tun\\d+", "wg\\d+"]
+device_format = "{icon} {ips}"
+#interface_name_exclude = [""]
+
+[[block]]
+block = "bluetooth"
+mac = "4C:B9:10:0D:A4:16"
+format = " {percentage}" 
+format_unavailable = "ﳌ"
+
+[[block]]
+block = "bluetooth"
+mac = "DF:D5:2A:8C:BF:41"
+format = " {percentage}"
+format_unavailable = ""
+
+[[block]]
+block = "sound"
+driver = "pulseaudio"
+on_click = "volumectl toggle-mute"
+show_volume_when_muted = true
+headphones_indicator = true
+max_vol = 100
+
+[[block]]
+block = "backlight"
+
+[[block]]
+block = "battery"
+driver = "upower"
+if_command = "test -e /sys/class/power_supply/BAT0"
+format = "  {power} {time} {percentage}"
+
+[[block]]
+block = "time"
+interval = 5
+format = "%a %-d %b %R"

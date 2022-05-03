@@ -1,0 +1,8 @@
+profile {
+    output eDP-1 mode 1920x1080
+}
+
+profile Home {
+    output eDP-1 mode 1920x1080 transform normal
+    output "Lenovo Group Limited P27h-20 V906DGZN" mode 2560x1440 transform 90 position 1920,-1480
+}
